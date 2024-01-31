@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+import FeedbackButton from './FeedbackButton';
 const { Component } = require('react');
 
 class Feedback extends Component {
@@ -10,14 +12,12 @@ class Feedback extends Component {
         <ul>
           {options.map(option => (
             <li key={option}>
-              <button
-                type="button"
+              <FeedbackButton
                 onClick={() => {
                   buttonHandler(option);
                 }}
-              >
-                {option}
-              </button>
+                value={option}
+              />
             </li>
           ))}
         </ul>
@@ -27,3 +27,8 @@ class Feedback extends Component {
 }
 
 export default Feedback;
+
+Feedback.propTypes = {
+  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  buttonHandler: PropTypes.func.isRequired,
+};

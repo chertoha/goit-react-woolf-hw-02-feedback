@@ -1,23 +1,22 @@
+import PropTypes from 'prop-types';
 const { Component } = require('react');
 
 class Statistics extends Component {
   render() {
-    const { good, neutral, bad, total, positivePercentage } = this.props;
-
+    const { total, positivePercentage, ...rest } = this.props;
+    const options = Object.keys(rest).map(key => ({ key, value: rest[key] }));
     return (
       <div>
         <h2>Statistics</h2>
 
         <ul>
-          <li>
-            <p>Good: {good}</p>
-          </li>
-          <li>
-            <p>Neutral: {neutral}</p>
-          </li>
-          <li>
-            <p>Bad: {bad}</p>
-          </li>
+          {options.map(({ key, value }) => (
+            <li key={key}>
+              <p>
+                <span>{key}</span>: {value}
+              </p>
+            </li>
+          ))}
         </ul>
 
         <p>Total: {total}</p>
@@ -28,3 +27,11 @@ class Statistics extends Component {
 }
 
 export default Statistics;
+
+Statistics.propTypes = {
+  good: PropTypes.number.isRequired,
+  neutral: PropTypes.number.isRequired,
+  bad: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired,
+  positivePercentage: PropTypes.string.isRequired,
+};
