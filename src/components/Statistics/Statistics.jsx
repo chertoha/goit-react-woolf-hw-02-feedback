@@ -7,8 +7,6 @@ class Statistics extends Component {
     const options = Object.keys(rest).map(key => ({ key, value: rest[key] }));
     return (
       <div>
-        <h2>Statistics</h2>
-
         <ul>
           {options.map(({ key, value }) => (
             <li key={key}>

@@ -8,7 +8,6 @@ class Feedback extends Component {
 
     return (
       <div>
-        <h2>Please leave feedback</h2>
         <ul>
           {options.map(option => (
             <li key={option}>

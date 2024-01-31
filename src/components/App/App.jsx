@@ -35,21 +35,21 @@ class App extends Component {
       <div>
         <h1 hidden>User's feedback application</h1>
 
-        <Section>
-          <Container>
+        <Container>
+          <Section title="Please leave feedback">
             <Feedback buttonHandler={this.increase} options={feedbackOptions} />
-          </Container>
-        </Section>
+          </Section>
+        </Container>
 
-        <Section>
-          <Container>
+        <Container>
+          <Section title="Statistics">
             <Statistics
               total={total}
               positivePercentage={positivePercentage}
               {...this.state}
             />
-          </Container>
-        </Section>
+          </Section>
+        </Container>
       </div>
     );
   }
