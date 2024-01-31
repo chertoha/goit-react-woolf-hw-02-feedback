@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
+import { StyledButton } from './Feedback.styled';
 
 const FeedbackButton = ({ onClick, value }) => {
   return (
-    <button type="button" onClick={onClick}>
+    <StyledButton type="button" onClick={onClick}>
       {value}
-    </button>
+    </StyledButton>
   );
 };
 

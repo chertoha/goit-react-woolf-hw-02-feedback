@@ -1,5 +1,7 @@
 import Notification from 'components/Notification';
 import PropTypes from 'prop-types';
+import Stat from './Stat';
+import { Item, List, Percentage, Total, Wrapper } from './Statistics.styled';
 const { Component } = require('react');
 
 class Statistics extends Component {
@@ -11,20 +13,18 @@ class Statistics extends Component {
 
     const options = Object.keys(rest).map(key => ({ key, value: rest[key] }));
     return (
-      <div>
-        <ul>
+      <Wrapper>
+        <List>
           {options.map(({ key, value }) => (
-            <li key={key}>
-              <p>
-                <span>{key}</span>: {value}
-              </p>
-            </li>
+            <Item key={key}>
+              <Stat label={key} value={value} />
+            </Item>
           ))}
-        </ul>
+        </List>
 
-        <p>Total: {total}</p>
-        <p>Positive feedback: {positivePercentage}%</p>
-      </div>
+        <Total>Total: {total}</Total>
+        <Percentage>Positive feedback: {positivePercentage}%</Percentage>
+      </Wrapper>
     );
   }
 }

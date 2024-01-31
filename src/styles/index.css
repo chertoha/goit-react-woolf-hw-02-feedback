@@ -18,3 +18,10 @@ body {
 ul {
   list-style: none;
 }
+
+button {
+  display: block;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}

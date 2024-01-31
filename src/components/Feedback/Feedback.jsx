@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import FeedbackButton from './FeedbackButton';
+import { List, Item, Wrapper } from './Feedback.styled';
 const { Component } = require('react');
 
 class Feedback extends Component {
@@ -7,20 +8,20 @@ class Feedback extends Component {
     const { options, buttonHandler } = this.props;
 
     return (
-      <div>
-        <ul>
+      <Wrapper>
+        <List>
           {options.map(option => (
-            <li key={option}>
+            <Item key={option}>
               <FeedbackButton
                 onClick={() => {
                   buttonHandler(option);
                 }}
                 value={option}
               />
-            </li>
+            </Item>
           ))}
-        </ul>
-      </div>
+        </List>
+      </Wrapper>
     );
   }
 }
