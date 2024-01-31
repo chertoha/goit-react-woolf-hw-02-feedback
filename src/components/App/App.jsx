@@ -25,6 +25,7 @@ class App extends Component {
 
   render() {
     const total = countTotalFeedback(...Object.values(this.state));
+
     const positivePercentage = countPositiveFeedbackPercentage(
       this.state[FEEDBACK_VALUE.GOOD],
       total

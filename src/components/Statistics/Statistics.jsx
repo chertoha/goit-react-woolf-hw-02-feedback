@@ -1,9 +1,14 @@
+import Notification from 'components/Notification';
 import PropTypes from 'prop-types';
 const { Component } = require('react');
 
 class Statistics extends Component {
   render() {
     const { total, positivePercentage, ...rest } = this.props;
+
+    if (total === 0)
+      return <Notification message="There is no feedback yet!" />;
+
     const options = Object.keys(rest).map(key => ({ key, value: rest[key] }));
     return (
       <div>
