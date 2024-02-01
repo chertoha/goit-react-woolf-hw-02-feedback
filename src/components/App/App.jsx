@@ -3,8 +3,6 @@ import Feedback from 'components/Feedback';
 import Section from 'components/Section';
 import Statistics from 'components/Statistics';
 import { Component } from 'react';
-import { countPositiveFeedbackPercentage } from 'utils/countPositiveFeedbackPercentage';
-import { countTotalFeedback } from 'utils/countTotalFeedback';
 
 const FEEDBACK_VALUE = {
   GOOD: 'good',
@@ -23,10 +21,17 @@ class App extends Component {
     this.setState(state => ({ ...state, [name]: state[name] + 1 }));
   };
 
-  render() {
-    const total = countTotalFeedback(...Object.values(this.state));
+  countTotalFeedback = (...args) => {
+    return args.reduce((acc, arg) => acc + arg, 0);
+  };
 
-    const positivePercentage = countPositiveFeedbackPercentage(
+  countPositiveFeedbackPercentage = (positiveValue, total) => {
+    return ((positiveValue / total) * 100).toFixed(0);
+  };
+
+  render() {
+    const total = this.countTotalFeedback(...Object.values(this.state));
+    const positivePercentage = this.countPositiveFeedbackPercentage(
       this.state[FEEDBACK_VALUE.GOOD],
       total
     );
