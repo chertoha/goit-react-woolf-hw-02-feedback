@@ -1,5 +1,6 @@
 import Container from 'components/Container';
 import Feedback from 'components/Feedback';
+import Notification from 'components/Notification';
 import Section from 'components/Section';
 import Statistics from 'components/Statistics';
 import { Component } from 'react';
@@ -37,6 +38,11 @@ class App extends Component {
     );
     const feedbackOptions = Object.keys(this.state);
 
+    const statisticsOptions = Object.keys(this.state).map(key => ({
+      key,
+      value: this.state[key],
+    }));
+
     return (
       <div>
         <h1 hidden>User's feedback application</h1>
@@ -49,11 +55,15 @@ class App extends Component {
 
         <Container>
           <Section title="Statistics">
-            <Statistics
-              total={total}
-              positivePercentage={positivePercentage}
-              {...this.state}
-            />
+            {total > 0 ? (
+              <Statistics
+                total={total}
+                positivePercentage={positivePercentage}
+                options={statisticsOptions}
+              />
+            ) : (
+              <Notification message="There is no feedback yet!" />
+            )}
           </Section>
         </Container>
       </div>
